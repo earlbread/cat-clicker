@@ -12,6 +12,23 @@
   </head>
 
   <body>
+    <img src="https://c1.staticflickr.com/3/2079/2241767250_b29d0eef70_z.jpg?zz=1"
+         alt="cat image"
+         id="cat">
+    <h2 id="click-count">0</h2>
+
+    <script>
+
+      var count = 0;
+      var cat_image_elem = document.getElementById('cat');
+
+      cat_image_elem.addEventListener('click', function() {
+        var count_elem = document.getElementById('click-count');
+        count += 1;
+        count_elem.textContent = count;
+      }, false);
+
+    </script>
   </body>
 
 </html>
