@@ -1,0 +1,12 @@
+.content {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.cat-list {
+    width: 20%;
+}
+
+.cat-clicker {
+    width: 80%;
+}

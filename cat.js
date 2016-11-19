@@ -1,27 +1,27 @@
-var count1 = 0;
-var count2 = 0;
+var cats = [
+  {'name' : 'Kitty',
+   'image' : 'https://c1.staticflickr.com/3/2079/2241767250_b29d0eef70_z.jpg?zz=1',
+   'count' : 0},
+  {'name' : 'Cutty',
+   'image' : 'https://c1.staticflickr.com/3/2884/11098807816_38e2595591_n.jpg',
+   'count' : 0},
+  {'name' : 'Judy',
+   'image' : '',
+   'count' : 0},
+  {'name' : 'Bella',
+   'image' : '',
+   'count' : 0},
+  {'name' : 'Choco',
+   'image' : '',
+   'count' : 0}
+];
 
-var cat_name1 = "Kitty";
-var cat_name2 = "Cutty";
+cat_list = document.getElementsByClassName('cat-list')[0];
 
-var cat_name_elem1 = document.getElementById('cat-name1');
-var cat_name_elem2 = document.getElementById('cat-name2');
+for (var i = 0; i < cats.length; i++) {
+  elem = document.createElement('div');
+  elem.setAttribute('id', 'cat' + i);
+  elem.textContent = cats[i].name;
 
-cat_name_elem1.textContent = cat_name1;
-cat_name_elem2.textContent = cat_name2;
-
-var cat_image_elem1 = document.getElementById('cat1');
-var cat_image_elem2 = document.getElementById('cat2');
-
-
-cat_image_elem1.addEventListener('click', function() {
-  var count_elem1 = document.getElementById('count1');
-  count1 += 1;
-  count_elem1.textContent = count1;
-}, false);
-
-cat_image_elem2.addEventListener('click', function() {
-  var count_elem2 = document.getElementById('count2');
-  count2 += 1;
-  count_elem2.textContent = count2;
-}, false);
+  cat_list.appendChild(elem);
+}
