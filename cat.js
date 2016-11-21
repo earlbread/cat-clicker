@@ -43,6 +43,15 @@ $(function() {
       return cats;
     },
 
+    getCat: function(cat_id) {
+      return cats[cat_id];
+    },
+
+    addCount: function(cat_id) {
+      cats[cat_id].count += 1;
+      view.render_clicker(cat_id);
+    },
+
     init: function() {
       model.init();
       view.init();
@@ -52,9 +61,18 @@ $(function() {
   var view = {
     init: function() {
       this.$cat_list = $('.cat-list');
-      this.cat_list_template = $('script[data-template="list-item"]').html();
+      this.cat_list_template = $('script[data-template="cat"]').html();
+
+      this.clicker_template = $('script[data-template="clicker-template').html();
+      this.$cat_clicker = $('.cat-clicker');
 
       this.render_list();
+
+      this.$cat_list.on('click', '.show-cat', function(e) {
+        var cat_id = $(this).parents('.cat').data();
+        view.render_clicker(cat_id.id);
+        return false;
+      });
     },
 
     render_list: function() {
@@ -66,6 +84,26 @@ $(function() {
         var this_template = list_template.replace(/{{id}}/g, cat.id);
         this_template = this_template.replace(/{{cat_name}}/g, cat.name);
         $cat_list.append(this_template);
+      });
+    },
+
+    render_clicker: function(cat_id) {
+      var clicker_template = this.clicker_template;
+      var $cat_clicker = this.$cat_clicker;
+      var cat = octopus.getCat(cat_id);
+      var this_template = clicker_template.replace(/{{cat_name}}/g, cat.name);
+      this_template = this_template.replace(/{{cat_image}}/g, cat.image);
+      this_template = this_template.replace(/{{count}}/, cat.count);
+
+      $cat_clicker.html('');
+
+      $cat_clicker.append(this_template);
+
+      var $clicker = $('.clicker');
+
+      $clicker.on('click', function(e) {
+        octopus.addCount(cat_id);
+        return false;
       });
     }
   };

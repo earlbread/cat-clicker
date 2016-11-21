@@ -25,10 +25,16 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="cat.js"></script>
 
-    <script type="text/template" data-template="list-item">
+    <script type="text/template" data-template="cat">
       <li class="cat" data-id="{{id}}">
         <a href="#" class="show-cat">{{cat_name}}</a>
       </li>
+    </script>
+
+    <script type="text/template" data-template="clicker-template">
+      <h1 class="cat-name">{{cat_name}}</h1>
+      <img class="clicker" src="{{cat_image}}" alt="{{cat_name}} image">
+      <div class="count">{{count}}</div>
     </script>
 
   </body>
