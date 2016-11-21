@@ -10,3 +10,7 @@
 .cat-clicker {
     width: 80%;
 }
+
+.cat-list {
+    list-style-type: none;
+}

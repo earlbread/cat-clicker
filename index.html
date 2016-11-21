@@ -16,14 +16,20 @@
   <body>
 
     <div class="content">
-      <div class="cat-list">
-      </div>
+      <ul class="cat-list">
+      </ul>
       <div class="cat-clicker">
       </div>
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="cat.js"></script>
+
+    <script type="text/template" data-template="list-item">
+      <li class="cat" data-id="{{id}}">
+        <a href="#" class="show-cat">{{cat_name}}</a>
+      </li>
+    </script>
 
   </body>
 
