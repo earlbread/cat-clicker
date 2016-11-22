@@ -39,7 +39,7 @@ $(function() {
       return model.cats[cat_id];
     },
 
-    addCount: function(cat_id) {
+    incrementCounter: function(cat_id) {
       model.cats[cat_id].clickCount += 1;
       catView.render(cat_id);
     },
@@ -98,7 +98,7 @@ $(function() {
       var $clicker = $('.clicker');
 
       $clicker.on('click', function(e) {
-        octopus.addCount(cat_id);
+        octopus.incrementCounter(cat_id);
         return false;
       });
     }
