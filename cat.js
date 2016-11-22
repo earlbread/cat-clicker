@@ -51,6 +51,7 @@ var octopus = {
     this.setCurrentCat(model.cats[0]);
     catListView.init();
     catView.init();
+    adminView.init();
   }
 };
 
@@ -102,5 +103,16 @@ var catView = {
     this.catCountElem.textContent = cat.clickCount;
   }
 };
+
+var adminView = {
+  init: function() {
+    this.adminElem = document.getElementById('admin');
+
+    this.adminElem.style.display = 'none';
+  },
+
+  render: function() {
+  }
+}
 
 octopus.init();
