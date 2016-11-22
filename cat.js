@@ -107,7 +107,22 @@ var catView = {
 var adminView = {
   init: function() {
     this.adminElem = document.getElementById('admin');
+    this.adminDisplay = this.adminElem.style.display;
+    var showAdminElem = document.getElementById('show-admin');
+    var hideAdminElem = document.getElementById('hide-admin');
 
+    showAdminElem.addEventListener('click', this.showAdmin.bind(this));
+    hideAdminElem.addEventListener('click', this.hideAdmin.bind(this));
+
+    this.hideAdmin();
+  },
+
+  showAdmin: function() {
+    this.adminElem.style.display = this.adminDisplay;
+  },
+
+  hideAdmin: function() {
+    this.adminDisplay = this.adminElem.style.display;
     this.adminElem.style.display = 'none';
   },
 
