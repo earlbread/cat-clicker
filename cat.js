@@ -52,7 +52,7 @@ $(function() {
 
   var catListView = {
     init: function() {
-      this.$cat_list = $('.cat-list');
+      this.$cat_list = $('#cat-list');
       this.cat_list_template = $('script[data-template="cat"]').html();
 
       this.render();
@@ -80,7 +80,7 @@ $(function() {
   var catView = {
     init: function() {
       this.clicker_template = $('script[data-template="clicker-template').html();
-      this.$cat_clicker = $('.cat-clicker');
+      this.$cat_clicker = $('#cat-clicker');
     },
 
     render: function(cat_id) {
