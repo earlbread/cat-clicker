@@ -42,10 +42,21 @@ var octopus = {
     return model.currentCat;
   },
 
+  updateCurrentCat: function(name, image, count) {
+    model.currentCat.name = name;
+    model.currentCat.image = image;
+    model.currentCat.clickCount = parseInt(count);
+
+    catListView.render();
+    catView.render();
+    adminView.render();
+  },
+
   incrementCounter: function() {
     model.currentCat.clickCount += 1;
     catView.render();
   },
+
 
   init: function() {
     this.setCurrentCat(model.cats[0]);
@@ -76,6 +87,7 @@ var catListView = {
         return function() {
           octopus.setCurrentCat(cat);
           catView.render();
+          adminView.render();
         }
       }(cat));
 
@@ -110,23 +122,43 @@ var adminView = {
     this.adminDisplay = this.adminElem.style.display;
     var showAdminElem = document.getElementById('show-admin');
     var hideAdminElem = document.getElementById('hide-admin');
+    var saveAdminElem = document.getElementById('save-admin');
 
     showAdminElem.addEventListener('click', this.showAdmin.bind(this));
     hideAdminElem.addEventListener('click', this.hideAdmin.bind(this));
+    saveAdminElem.addEventListener('click', this.saveAdmin.bind(this));
 
-    this.hideAdmin();
+    this.render();
   },
 
   showAdmin: function() {
+    this.render();
+
     this.adminElem.style.display = this.adminDisplay;
   },
 
   hideAdmin: function() {
-    this.adminDisplay = this.adminElem.style.display;
-    this.adminElem.style.display = 'none';
+    if (this.adminElem.style.display !== 'none') {
+      this.adminDisplay = this.adminElem.style.display;
+      this.adminElem.style.display = 'none';
+    }
+  },
+
+  saveAdmin: function() {
+    var name = document.getElementById('edit-name').value;
+    var image = document.getElementById('edit-img').value;
+    var count = document.getElementById('edit-count').value;
+
+    octopus.updateCurrentCat(name, image, count);
   },
 
   render: function() {
+    var cat = octopus.getCurrentCat();
+    document.getElementById('edit-name').value = cat.name;
+    document.getElementById('edit-img').value = cat.image;
+    document.getElementById('edit-count').value = cat.clickCount;
+
+    this.hideAdmin();
   }
 }
 
