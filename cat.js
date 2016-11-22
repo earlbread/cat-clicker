@@ -5,27 +5,27 @@ $(function() {
       {
         name: 'Kitty',
         image: 'https://c1.staticflickr.com/3/2079/2241767250_b29d0eef70_z.jpg?zz=1',
-        count: 0
+        clickCount: 0
       },
       {
         name: 'Cutty',
         image: 'https://c1.staticflickr.com/3/2884/11098807816_38e2595591_n.jpg',
-        count: 0
+        clickCount: 0
       },
       {
         name: 'Judy',
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzEamUnQcCAS1UFqonKc6VKfZ0ykFbNFdlBw9iWoythOffJS29RZqhkMQ',
-        count: 0
+        clickCount: 0
       },
       {
         name: 'Bella',
         image: 'https://imgflip.com/s/meme/Cute-Cat.jpg',
-        count: 0
+        clickCount: 0
       },
       {
         name: 'Choco',
         image: 'https://s-media-cache-ak0.pinimg.com/736x/ba/54/54/ba54544039e1310da2bfc32881cbd00a.jpg',
-        count: 0
+        clickCount: 0
       }
     ]
   };
@@ -40,7 +40,7 @@ $(function() {
     },
 
     addCount: function(cat_id) {
-      model.cats[cat_id].count += 1;
+      model.cats[cat_id].clickCount += 1;
       view.render_clicker(cat_id);
     },
 
@@ -85,7 +85,7 @@ $(function() {
       var cat = octopus.getCat(cat_id);
       var this_template = clicker_template.replace(/{{cat_name}}/g, cat.name);
       this_template = this_template.replace(/{{cat_image}}/g, cat.image);
-      this_template = this_template.replace(/{{count}}/, cat.count);
+      this_template = this_template.replace(/{{count}}/, cat.clickCount);
 
       $cat_clicker.html('');
 
