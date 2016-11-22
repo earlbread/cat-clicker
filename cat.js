@@ -41,45 +41,49 @@ $(function() {
 
     addCount: function(cat_id) {
       model.cats[cat_id].clickCount += 1;
-      view.render_clicker(cat_id);
+      catView.render(cat_id);
     },
 
     init: function() {
-      view.init();
+      catListView.init();
+      catView.init();
     }
   };
 
-  var view = {
+  var catListView = {
     init: function() {
       this.$cat_list = $('.cat-list');
       this.cat_list_template = $('script[data-template="cat"]').html();
 
-      this.clicker_template = $('script[data-template="clicker-template').html();
-      this.$cat_clicker = $('.cat-clicker');
-
-      this.render_list();
-
-      this.$cat_list.on('click', '.show-cat', function(e) {
-        var cat_id = $(this).parents('.cat').data();
-        view.render_clicker(cat_id.id);
-        return false;
-      });
+      this.render();
     },
 
-    render_list: function() {
+    render: function() {
       var list_template = this.cat_list_template;
-      var $cat_list = this.$cat_list;
       var cats = octopus.getCats();
-      $cat_list.html('');
+      this.$cat_list.html('');
 
       for (var i = 0; i < cats.length; i++) {
         var this_template = list_template.replace(/{{id}}/g, i);
         this_template = this_template.replace(/{{cat_name}}/g, cats[i].name);
-        $cat_list.append(this_template);
+        this.$cat_list.append(this_template);
       }
+
+      this.$cat_list.on('click', '.show-cat', function(e) {
+        var cat_id = $(this).parents('.cat').data();
+        catView.render(cat_id.id);
+        return false;
+      });
+    }
+  };
+
+  var catView = {
+    init: function() {
+      this.clicker_template = $('script[data-template="clicker-template').html();
+      this.$cat_clicker = $('.cat-clicker');
     },
 
-    render_clicker: function(cat_id) {
+    render: function(cat_id) {
       var clicker_template = this.clicker_template;
       var $cat_clicker = this.$cat_clicker;
       var cat = octopus.getCat(cat_id);
