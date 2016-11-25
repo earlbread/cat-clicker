@@ -62,8 +62,8 @@ var ViewModel = function() {
     this.clickCount(this.clickCount() + 1);
   }
 
-  this.setCurrentCat = function() {
-    self.currentCat(this);
+  this.setCurrentCat = function(clickedCat) {
+    self.currentCat(clickedCat);
     self.hideAdmin();
   }
 
