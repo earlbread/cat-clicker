@@ -35,6 +35,9 @@ var Cat = function(data) {
 var ViewModel = function() {
   var self = this;
   this.catList = ko.observableArray([]);
+  this.name = ko.observable();
+  this.image = ko.observable();
+  this.clickCount = ko.observable();
 
   initialCats.forEach(function(cat) {
     self.catList.push(new Cat(cat));
@@ -44,6 +47,9 @@ var ViewModel = function() {
 
   this.showAdmin = function() {
     self.shouldShowAdmin(true);
+    self.name(self.currentCat().name());
+    self.image(self.currentCat().image());
+    self.clickCount(self.currentCat().clickCount());
   };
 
   this.hideAdmin = function() {
@@ -51,6 +57,7 @@ var ViewModel = function() {
   };
 
   this.currentCat = ko.observable(this.catList()[0]);
+
   this.incrementCounter = function() {
     this.clickCount(this.clickCount() + 1);
   }
@@ -60,10 +67,11 @@ var ViewModel = function() {
     self.hideAdmin();
   }
 
-  this.updateCurrentCat = function(name, image, clickCount) {
-    console.log(name());
-    console.log(image());
-    console.log(clickCount());
+  this.updateCurrentCat = function() {
+    self.currentCat().name(self.name());
+    self.currentCat().image(self.image());
+    self.currentCat().clickCount(parseInt(self.clickCount()));
+    self.hideAdmin();
   }
 }
 

@@ -8,7 +8,11 @@
 }
 
 #cat-clicker {
-    width: 80%;
+    width: 40%;
+}
+
+#admin {
+    width: 40%;
 }
 
 label {

@@ -26,8 +26,9 @@
         <div id="cat-count" data-bind="text: clickCount"></div>
 
         <button id="show-admin" data-bind="click: $parent.showAdmin">Admin</button>
-
-        <div id="admin" data-bind="visible: $parent.shouldShowAdmin">
+      </div>
+      <div id="admin" data-bind="visible: shouldShowAdmin">
+        <form data-bind="submit: updateCurrentCat">
           <label for="edit-name">
             Name
             <input type="text" id="edit-name" data-bind="value: name">
@@ -40,11 +41,11 @@
             Count
             <input type="text" id="edit-count" data-bind="value: clickCount">
           </label>
-          <button id="hide-admin" data-bind="click: $parent.hideAdmin">Cancel</button>
-          <button id="save-admin" data-bind="click: $parent.updateCurrentCat(name, image, clickCount)">Save</button>
-        </div>
-
+          <button id="hide-admin" data-bind="click: hideAdmin">Cancel</button>
+          <button id="save-admin" type="submit">Save</button>
+        </form>
       </div>
+
     </div>
 
     <script src="js/lib/knockout-3.4.1.js"></script>
