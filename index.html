@@ -16,30 +16,32 @@
   <body>
 
     <div class="content">
-      <ul id="cat-list">
+      <ul id="cat-list" data-bind="foreach: catList">
+        <li data-bind="click:$parent.setCurrentCat, text: name"></li>
       </ul>
-      <div id="cat-clicker">
-        <h1 id="cat-name"></h1>
-        <img id="cat-img" src="" alt="cat image">
-        <div id="cat-count"></div>
+      <div id="cat-clicker" data-bind="with: currentCat">
+        <h1 id="cat-name" data-bind="text: name"></h1>
+        <img id="cat-img" src="" alt="cat image" data-bind="click: $parent.incrementCounter,
+        attr: {src: image}">
+        <div id="cat-count" data-bind="text: clickCount"></div>
 
-        <button id="show-admin">Admin</button>
+        <button id="show-admin" data-bind="click: $parent.showAdmin">Admin</button>
 
-        <div id="admin">
+        <div id="admin" data-bind="visible: $parent.shouldShowAdmin">
           <label for="edit-name">
             Name
-            <input type="text" id="edit-name">
+            <input type="text" id="edit-name" data-bind="value: name">
           </label>
           <label for="edit-img">
             Image
-            <input type="text" id="edit-img">
+            <input type="text" id="edit-img" data-bind="value: image">
           </label>
           <label>
             Count
-            <input type="text" id="edit-count">
+            <input type="text" id="edit-count" data-bind="value: clickCount">
           </label>
-          <button id="hide-admin">Cancel</button>
-          <button id="save-admin">Save</button>
+          <button id="hide-admin" data-bind="click: $parent.hideAdmin">Cancel</button>
+          <button id="save-admin" data-bind="click: $parent.updateCurrentCat(name, image, clickCount)">Save</button>
         </div>
 
       </div>
